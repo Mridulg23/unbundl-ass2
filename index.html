@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonka</title>
+</head>
+
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #b47c7c;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content:center;
+          align-items: center;
+          height: 100vh;
+        }
+  
+        .container {
+          background-color:brown;
+          padding: 30px;
+          border-radius: 8px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+  
+        .chocolate-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+        }
+  
+        .chocolate-item label {
+          margin-right: 10px;
+        }
+  
+        #totalPrice {
+          margin-top: 20px;
+          font-size: 18px;
+          font-weight: bold;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h2>Wonka Chocolate Shop</h2>
+  
+        <div class="chocolate-item">
+          <label for="dairymilk">Dairymilk:</label>
+          <input type="number" id="dairymilk" min="0" max="8" value="0" />
+        </div>
+  
+        <div class="chocolate-item">
+          <label for="fivestar">Five Star:</label>
+          <input type="number" id="fivestar" min="0" max="8" value="0" />
+        </div>
+  
+        <div class="chocolate-item">
+          <label for="kitkat">kit kat:</label>
+          <input type="number" id="kitkat" min="0" max="8" value="0" />
+        </div>
+  
+        <div id="totalPrice">Total Price: Rs0.00</div>
+      </div>
+  
+      <script>
+        const dairymilkInput = document.getElementById('dairymilk')
+        const fivestarInput = document.getElementById('fivestar')
+        const kitkatInput = document.getElementById('kittkat')
+        const totalPriceElement = document.getElementById('totalPrice')
+  
+        dairymilkInput.addEventListener('input', updateTotalPrice)
+        fivestarInput.addEventListener('input', updateTotalPrice)
+        kitkatInput.addEventListener('input', updateTotalPrice)
+  
+        function updateTotalPrice() {
+          const dairymilkChocolateQty = parseInt(dairymilkInput.value) || 0
+          const fivestarQty = parseInt(fivestarInput.value) || 0
+          const kitkatQty = parseInt(kitkatInput.value) || 0
+  
+          const totalPrice =
+            (dairymilkQty + fivestarQty + kitkatQty) * 2.5
+          totalPriceElement.textContent = `Total Price: Rs${totalPrice.toFixed(2)}`
+  
+          if (dairymilkQty + fivestarQty + kitkatQty > 8) {
+            alert(
+              'Total quantity cannot exceed 8 chocalates. Please adjust your selection.'
+            )
+            this.value = 0
+            updateTotalPrice()
+          }
+        }
+      </script>
+    
+</body>
+</html>
